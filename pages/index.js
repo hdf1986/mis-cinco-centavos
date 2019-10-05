@@ -77,9 +77,12 @@ var h1Style = {
 
 const Index = ({ projects }) => {
 
-  function handleClick() {
-    alert("click button");
+  function handleDonate(id) {
+    api.donate(id, 10).catch(console.log);
+  }
 
+  function handleClick() {
+    console.log('click')
   }
 
   // return JSON.stringify(projects);
@@ -127,11 +130,11 @@ const Index = ({ projects }) => {
               onClick={handleClick}>Detalle
             </button>
           </Link>
-          <Link key={id} href={id}>
+          <Link key={id}>
             <button
               className="btn btn-default"
               style={buttonStyle}
-              onClick={handleClick}>Donar
+              onClick={() => handleDonate(id)}>Donar
             </button>
           </Link>
         </Body>
