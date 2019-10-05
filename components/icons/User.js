@@ -4,8 +4,8 @@ const User = () => (
         baseProfile="tiny"
         height="48px"
         version="1.2"
-        viewBox="0 0 24 24"
-        width="24px"
+        viewBox="0 0 48 48"
+        width="48px"
         xmlSpace="preserve"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink">
