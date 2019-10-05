@@ -63,8 +63,8 @@ const Amount = styled.div`
 `;
 
 const Progress = styled.div`
-  height: 25px;
-  background-color: whitesmoke;
+  height: 12px;
+  background-color: gainsboro;
 
   .bar {
     height: 100%;
@@ -137,7 +137,7 @@ const ProjectCard = ({ image, title, goal, category, donations, description, id,
             <div className="goal">${goal}</div>
           </Amount>
         </Header>
-        <Progress amount={(funded / goal) * 100}>
+        <Progress amount={Math.min(100, (funded / goal) * 100)}>
           <div className="bar" />
         </Progress>
         <Body>
