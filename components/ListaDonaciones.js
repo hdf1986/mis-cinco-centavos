@@ -1,14 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import Link from "next/link";
 
 import api from "../api";
-
-import UserIcon from "./icons/User";
-import TagIcon from "./icons/Tag";
-import HeartIcon from "./icons/Heart";
-import ListaDonaciones from "./ListaDonaciones";
-import ShareButtons from "./ShareButtons";
 
 const Card = styled.div`
   border-radius: 10px;
@@ -128,7 +121,7 @@ const Description = styled.p`
   margin: 6px 0;
 `;
 
-const ProjectCard = ({ image, title, funded, goal, category, donations, description, id }) => {
+const ListaDonaciones = ({ donations}) => {
   const [isFavourite, setFavourite] = React.useState(false);
 
   function handleDonate() {
@@ -136,50 +129,14 @@ const ProjectCard = ({ image, title, funded, goal, category, donations, descript
   }
 
   return (
-    <Card>
-      <Header src={image}>
-        <Title>
-          {title}
-          <HeartIcon active={isFavourite} onClick={() => setFavourite(!isFavourite)}/>
-        </Title>
-        <Amount>
-          <div className="funded">${funded}</div>
-          <span> de </span>
-          <div className="goal">${goal}</div>
-        </Amount>
-      </Header>
-      <Progress amount={(funded / goal) * 100}>
-        <div className="bar"/>
-      </Progress>
-      <Body>
-        <Content>
-          <Tags>
-            <Tag>
-              <TagIcon/>
-              <span>{category}</span>
-            </Tag>
-            <Tag>
-              <UserIcon/>
-              <span>{donations.length}</span>
-            </Tag>
-          </Tags>
-          <Description>{description}</Description>
-        </Content>
-        <Footer>
-          <Link key={id} href={id}>
-            <Button backgroundColor="whitesmoke">Detalle</Button>
-          </Link>
-          <Button color="white" onClick={handleDonate}>
-            Donar
-          </Button>
-        </Footer>
-
-        <ShareButtons url={"http://google.com"}/>
-        <ListaDonaciones donations={donations}/>
-
-      </Body>
-    </Card>
+    <ul>
+      {donations.map(donation => (
+        <li>
+          {donation.amount}
+        </li>
+      ))}
+    </ul>
   );
 };
 
-export default ProjectCard;
+export default ListaDonaciones;
