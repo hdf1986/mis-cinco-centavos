@@ -68,6 +68,7 @@ const ProjectForm = ({ title, onSubmit, onClose }) => {
           <Form>
             <TextField
               placeholder="Monto en pesos"
+              type="number"
               value={amount}
               onChange={e => setAmount(Number(e.target.value || 0))}
             />
