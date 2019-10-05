@@ -118,7 +118,6 @@ const ProjectCard = ({ image, title, funded, goal, category, donations, descript
   function handleDonate({ amount, name }) {
     api.donate(id, amount, name).catch(console.log);
   }
-
   return (
     <>
       <Card>
@@ -128,7 +127,7 @@ const ProjectCard = ({ image, title, funded, goal, category, donations, descript
             <HeartIcon active={isFavourite} onClick={() => toggleFavourite(!isFavourite)} />
           </Title>
           <Amount>
-            <div className="funded">${funded}</div>
+            <div className="funded">${donations.reduce((acc, cur) => acc + cur.amount, 0)}</div>
             <span> de </span>
             <div className="goal">${goal}</div>
           </Amount>
