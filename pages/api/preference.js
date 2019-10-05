@@ -4,7 +4,7 @@ export default (req, res) => {
   const { amount, id } = req.body;
   mercadopago.preferences
     .create({
-      notification_url: `${process.env.SERVER_URL}/api/donation?project=${id}&amount=${amount}`,
+      notification_url: `${process.env.SERVER_URL}/api/donation?project=${id}&amount=${amount}&timestamp=${+new Date()}`,
       auto_return: 'approved',
       back_urls: {
         success: `${process.env.SERVER_URL}/${id}`,

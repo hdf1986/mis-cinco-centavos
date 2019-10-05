@@ -13,7 +13,6 @@ const Project = ({ id, project: initialData }) => {
   const [project, setProject] = React.useState(initialData);
 
   React.useEffect(() => api.subscribe(id, setProject), [id]);
-
   return (
     <>
       <Head>

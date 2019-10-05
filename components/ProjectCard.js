@@ -132,7 +132,6 @@ const ProjectCard = ({ image, title, funded, goal, category, donations, descript
   function handleDonate() {
     api.donate(id, 10).catch(console.log);
   }
-  console.log(donations)
   return (
     <Card>
       <Header src={image}>
