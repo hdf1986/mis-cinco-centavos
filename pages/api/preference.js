@@ -1,10 +1,11 @@
 const mercadopago = require("../../mercadopago");
 
 export default (req, res) => {
-  const { amount, id } = req.body;
+  const { amount, id, name } = req.body;
+  console.log(name)
   mercadopago.preferences
     .create({
-      notification_url: `${process.env.SERVER_URL}/api/donation?project=${id}&amount=${amount}&timestamp=${+new Date()}`,
+      notification_url: `${process.env.SERVER_URL}/api/donation?project=${id}&amount=${amount}&timestamp=${+new Date()}&name=${name}`,
       auto_return: 'approved',
       back_urls: {
         success: `${process.env.SERVER_URL}/${id}`,

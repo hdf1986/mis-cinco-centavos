@@ -42,7 +42,7 @@ const Donations = ({ donations }) => (
         <Avatar src={`http://lorempixel.com/200/200/people/?id=${donation.id}`} />
         <Details>
           <Amount>${donation.amount}</Amount>
-          <div>{donation.donationId}</div>
+          <div>{donation.name}</div>
         </Details>
       </Donation>
     ))}
