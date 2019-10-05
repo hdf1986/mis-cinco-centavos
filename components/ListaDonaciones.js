@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-import api from "../api";
-
 const Card = styled.div`
   border-radius: 10px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
@@ -93,7 +91,7 @@ const Progress = styled.div`
   }
 `;
 
-const Content = styled.div``;
+const ContenedorDonaciones = styled.div``;
 
 const Footer = styled.div`
   display: flex;
@@ -121,21 +119,55 @@ const Description = styled.p`
   margin: 6px 0;
 `;
 
-const ListaDonaciones = ({ donations}) => {
+const Donacion = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 12px;
+`;
+
+const DonacionDetalle = styled.div`
+  flex: 1;
+  margin-left: 12px;
+`;
+
+const DonacionMonto = styled.div`
+  font-weight: bold;
+`;
+
+
+const Avatar = styled.div`
+  background-image: url(${({ src }) => src});
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  overflow:'hidden'
+`;
+
+const ListaDonaciones = ({ donations }) => {
   const [isFavourite, setFavourite] = React.useState(false);
 
-  function handleDonate() {
-    api.donate(id, 10).catch(console.log);
+  function handleDonate(donation) {
+    console.log(donation);
   }
 
   return (
-    <ul>
+    <ContenedorDonaciones>
       {donations.map(donation => (
-        <li>
-          {donation.amount}
-        </li>
+        <Donacion>
+          <Avatar src={"http://lorempixel.com/200/200/sports/"}/>
+          {/*<Avatar src={"https://picsum.photos/200/200"}/>*/}
+          <DonacionDetalle>
+            <DonacionMonto>
+              ${donation.amount}
+            </DonacionMonto>
+            <div>
+              {donation.donationId}
+            </div>
+          </DonacionDetalle>
+        </Donacion>
       ))}
-    </ul>
+    </ContenedorDonaciones>
   );
 };
 
