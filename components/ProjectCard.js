@@ -2,6 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import Link from "next/link";
 
+import api from "../api";
+
 import UserIcon from "./icons/User";
 import TagIcon from "./icons/Tag";
 import HeartIcon from "./icons/Heart";
@@ -127,8 +129,8 @@ const Description = styled.p`
 const ProjectCard = ({ image, title, funded, goal, category, donations, description, id }) => {
   const [isFavourite, setFavourite] = React.useState(false);
 
-  function handleClick() {
-    alert("click button");
+  function handleDonate() {
+    api.donate(id, 10).catch(console.log);
   }
 
   return (
@@ -163,11 +165,9 @@ const ProjectCard = ({ image, title, funded, goal, category, donations, descript
         </Content>
         <Footer>
           <Link key={id} href={id}>
-            <Button backgroundColor="whitesmoke" onClick={handleClick}>
-              Detalle
-            </Button>
+            <Button backgroundColor="whitesmoke">Detalle</Button>
           </Link>
-          <Button color="white" onClick={handleClick}>
+          <Button color="white" onClick={handleDonate}>
             Donar
           </Button>
         </Footer>
