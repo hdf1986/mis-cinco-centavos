@@ -1,8 +1,13 @@
-import { Global, css } from "@emotion/core";
+import { css, Global } from "@emotion/core";
+import Head from "next/head";
 
 export default () => (
-  <Global
-    styles={css`
+  <>
+    <Head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+    </Head>
+    <Global
+      styles={css`
       :root {
         --primary: orangered;
       }
@@ -11,7 +16,7 @@ export default () => (
       body {
         margin: 0;
         padding: 0;
-        font-family: sans-serif;
+        font-family: Roboto;
       }
 
       a {
@@ -19,5 +24,5 @@ export default () => (
         text-decoration: none;
       }
     `}
-  />
+    /></>
 );

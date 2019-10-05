@@ -1,30 +1,7 @@
 import Link from "next/link";
 import styled from "@emotion/styled";
-// import "typeface-roboto";
-
-
 import api from "../api";
-
-const Titulo = styled.div`
-display:flex;
-  align-items: center;
-  justify-content:space-between;
-  font-size: 12px;
-`;
-
-const Tags = styled.div`
-display:flex;
-  align-items: center;
-  justify-content:space-between;
-`;
-
-const Monto = styled.div`
-
-`;
-
-const Body = styled.div`
-
-`;
+// import "typeface-roboto";
 
 const Grilla = styled.div`
   display: grid;
@@ -33,19 +10,61 @@ const Grilla = styled.div`
 `;
 
 const Card = styled.div`
-  padding: 12px;
-border-radius: 10px;
-background: lightgrey;
-border: 1px solid black; 
+  border-radius: 10px;
+  border: 1px solid black; 
 `;
 
 const Header = styled.div`
   margin-bottom: 12px;
-  
+  background-image: url(${({ src }) => src});
+  background-size: cover;
+`;
+
+
+const Titulo = styled.div`
+  display:flex;
+  align-items: center;
+  justify-content:space-between;
+  font-size: 10px;
+  color:white;
+  background:grey;    
+  padding: 12px;
+`;
+
+const Monto = styled.div`
+  color: white;
+  padding: 12px;
+  display:flex;
+  align-items: flex-end;
+`;
+
+const Tags = styled.div`
+  display:flex;
+  align-items: center;
+  justify-content:space-between;
+  color:black;
+`;
+
+const Body = styled.div`
+  padding: 12px;
 `;
 
 var buttonStyle = {
-  margin: "10px 10px 10px 0"
+  margin: "10px 10px 10px 0",
+  width: 200
+};
+
+var fundedStyle = {
+  fontSize: 30
+};
+
+var goalStyle = {
+  fontSize: 20
+};
+
+var h1Style = {
+  padding: 0,
+  margin: 0
 };
 
 const Index = ({ projects }) => {
@@ -61,15 +80,16 @@ const Index = ({ projects }) => {
 
       //cargar la imagen de background
       <Card>
-        <Header>
+        <Header src={project.image}>
           <Titulo>
-            <h1>{project.title}</h1>
+            <h1 style={h1Style}>{project.title}</h1>
             #icono
           </Titulo>
           <h2>{project.subtitle}</h2>
 
           <Monto>
-            {project.funded} de {project.goal}
+            <span style={fundedStyle}>${project.funded}</span>
+            <span style={goalStyle}>&nbsp; de ${project.goal}</span>
           </Monto>
 
           {/*componente progress*/}
@@ -87,7 +107,7 @@ const Index = ({ projects }) => {
           </Tags>
 
           <span>Descripcion</span>
-          <p>{project.text}</p>
+          <p>{project.description}</p>
           <Link key={id} href={id}>
             <button
               className="btn btn-default"
