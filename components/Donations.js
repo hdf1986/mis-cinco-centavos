@@ -7,7 +7,7 @@ const Container = styled.div`
 
 const Donation = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center
   justify-content: space-around;
   padding: 12px;
   border-radius: 4px;
@@ -18,12 +18,10 @@ const Donation = styled.div`
 `;
 
 const Details = styled.div`
+  display: flex;
+  align-items: center;
   flex: 1;
   margin-left: 12px;
-`;
-
-const Amount = styled.div`
-  font-weight: bold;
 `;
 
 const Avatar = styled.div`
@@ -41,8 +39,7 @@ const Donations = ({ donations }) => (
       <Donation>
         <Avatar src={`http://lorempixel.com/200/200/people/?id=${donation.id}`} />
         <Details>
-          <Amount>${donation.amount}</Amount>
-          <div>{donation.name}</div>
+          {donation.name || "Anónimo"} donó ${donation.amount}
         </Details>
       </Donation>
     ))}
