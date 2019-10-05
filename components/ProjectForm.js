@@ -9,7 +9,7 @@ const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;

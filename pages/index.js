@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "@emotion/styled";
 
 import api from "../api";
@@ -10,11 +11,15 @@ const Grilla = styled.div`
   padding: 12px;
 `;
 
-const Index = ({ projects }) => {
+const Index = ({ projects: initialData }) => {
+  const [projects, setProjects] = React.useState(initialData);
+
+  React.useEffect(() => api.subscribe.projects(setProjects), []);
+
   return (
     <Grilla>
       {projects.map(project => (
-        <ProjectCard key={project.id} {...project} />
+        <ProjectCard key={project.id} {...project} detail={false} />
       ))}
     </Grilla>
   );

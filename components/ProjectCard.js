@@ -11,7 +11,7 @@ import HeartIcon from "./icons/Heart";
 import ProjectForm from "./ProjectForm";
 
 const Card = styled.div`
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
   background: white;
   display: flex;
@@ -26,6 +26,8 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 `;
 
 const Title = styled.h1`
@@ -86,6 +88,7 @@ const Tags = styled.div`
 const Tag = styled.div`
   display: flex;
   align-items: center;
+  text-transform: capitalize;
 
   span {
     margin-left: 6px;
@@ -111,13 +114,15 @@ const Description = styled.p`
   margin: 6px 0;
 `;
 
-const ProjectCard = ({ image, title, funded, goal, category, donations, description, id }) => {
+const ProjectCard = ({ image, title, goal, category, donations, description, id, detail }) => {
   const [isFavourite, toggleFavourite] = React.useState(false);
   const [showModal, toggleModal] = React.useState(false);
+  const funded = donations.reduce((acc, cur) => acc + cur.amount, 0);
 
   function handleDonate({ amount, name }) {
     api.donate(id, amount, name).catch(console.log);
   }
+
   return (
     <>
       <Card>
@@ -127,7 +132,7 @@ const ProjectCard = ({ image, title, funded, goal, category, donations, descript
             <HeartIcon active={isFavourite} onClick={() => toggleFavourite(!isFavourite)} />
           </Title>
           <Amount>
-            <div className="funded">${donations.reduce((acc, cur) => acc + cur.amount, 0)}</div>
+            <div className="funded">${funded}</div>
             <span> de </span>
             <div className="goal">${goal}</div>
           </Amount>
@@ -150,9 +155,11 @@ const ProjectCard = ({ image, title, funded, goal, category, donations, descript
             <Description>{description}</Description>
           </div>
           <Footer>
-            <Link key={id} href={id}>
-              <Button backgroundColor="whitesmoke">Detalle</Button>
-            </Link>
+            {!Boolean(detail) && (
+              <Link key={id} href={id}>
+                <Button backgroundColor="whitesmoke">Detalle</Button>
+              </Link>
+            )}
             <Button color="white" onClick={() => toggleModal(true)}>
               Donar
             </Button>

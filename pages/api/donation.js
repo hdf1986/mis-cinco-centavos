@@ -1,15 +1,5 @@
 const { database, firestore } = require("../../firebase/admin");
 
-function parse(doc) {
-  const project = doc.data();
-
-  return {
-    id: doc.id,
-    funded: project.donations.reduce((funded, donation) => funded + donation.ammount, 0),
-    ...project,
-  };
-}
-
 export default (req, res) => {
   const { project, amount, id, timestamp } = req.query;
 
@@ -18,7 +8,7 @@ export default (req, res) => {
       .collection("projects")
       .doc(project)
       .get()
-      .then(parse)
+      .then(doc => ({ ...doc.data(), id: doc.id }))
       .then(proj => {
         if (proj.donations.find(current => current.donationId === timestamp)) return;
 
@@ -35,7 +25,7 @@ export default (req, res) => {
           })
           .then(donation => res.status(200).json(donation))
           .catch(error => res.status(400).json(error));
-      })
+      });
   } else {
     res.status(304).end();
   }

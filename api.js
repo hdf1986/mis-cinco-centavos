@@ -33,9 +33,15 @@ export default {
       .collection("projects")
       .get()
       .then(({ docs }) => docs.map(parse)),
-  subscribe: (project, callback) =>
-    database
-      .collection("projects")
-      .doc(project)
-      .onSnapshot(snapshot => callback(parse(snapshot))),
+  subscribe: {
+    project: (project, callback) =>
+      database
+        .collection("projects")
+        .doc(project)
+        .onSnapshot(doc => callback({ id: doc.id, ...doc.data() })),
+    projects: callback =>
+      database
+        .collection("projects")
+        .onSnapshot(snapshot => callback(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))),
+  },
 };

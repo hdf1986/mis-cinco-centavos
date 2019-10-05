@@ -12,7 +12,8 @@ const Container = styled.div`
 const Project = ({ id, project: initialData }) => {
   const [project, setProject] = React.useState(initialData);
 
-  React.useEffect(() => api.subscribe(id, setProject), [id]);
+  React.useEffect(() => api.subscribe.project(id, setProject), [id]);
+
   return (
     <>
       <Head>
@@ -21,7 +22,7 @@ const Project = ({ id, project: initialData }) => {
         <meta content={project.description} name="og:description" />
       </Head>
       <Container>
-        <ProjectCard {...project}/>
+        <ProjectCard {...project} detail={true} />
       </Container>
     </>
   );

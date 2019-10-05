@@ -3,7 +3,7 @@ const Heart = ({ active, ...props }) => (
     {...props}
     enableBackground="new -0.709 -11.555 141.732 141.732"
     height="32px"
-    style={{ minWidth: 32 }}
+    style={{ minWidth: 32, marginLeft: 12 }}
     version="1.1"
     viewBox="-0.709 -11.555 141.732 141.732"
     width="32px"
