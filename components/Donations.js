@@ -1,13 +1,20 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const Container = styled.div``;
+const Container = styled.div`
+  margin-top: 12px;
+`;
 
 const Donation = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
   padding: 12px;
+  border-radius: 4px;
+
+  &:nth-of-type(odd) {
+    background: whitesmoke;
+  }
 `;
 
 const Details = styled.div`

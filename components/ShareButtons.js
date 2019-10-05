@@ -5,22 +5,20 @@ import Facebook from "./icons/Facebook";
 import Twitter from "./icons/Twitter";
 import Whatsapp from "./icons/Whatsapp";
 
-const ShareContainer = styled.div`
+const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding-left: 30px;
-  padding-right: 30px;
-  margin-top: 15px;
+  justify-content: space-evenly;
+  margin-top: 12px;
 `;
 
 const ShareButtons = () => {
   return (
-    <ShareContainer>
+    <Container>
       <Facebook />
       <Twitter />
       <Whatsapp />
-    </ShareContainer>
+    </Container>
   );
 };
 
