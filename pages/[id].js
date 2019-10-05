@@ -4,6 +4,8 @@ import styled from "@emotion/styled";
 
 import api from "../api";
 import ProjectCard from "../components/ProjectCard";
+import Donations from "../components/Donations";
+import ShareButtons from "../components/ShareButtons";
 
 const Container = styled.div`
   padding: 12px;
@@ -23,6 +25,8 @@ const Project = ({ id, project: initialData }) => {
       </Head>
       <Container>
         <ProjectCard {...project} detail={true} />
+        <ShareButtons url="http://google.com" />
+        <Donations donations={project.donations} />
       </Container>
     </>
   );
