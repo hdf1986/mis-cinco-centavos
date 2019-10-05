@@ -1,7 +1,7 @@
 const { database, firestore } = require("../../firebase/admin");
 
 export default (req, res) => {
-  const { project, amount, id, timestamp } = req.query;
+  const { project, amount, id, timestamp, name } = req.query;
 
   if (id && project) {
     database
@@ -21,6 +21,7 @@ export default (req, res) => {
               amount: Number(amount),
               timestamp: +new Date(),
               donationId: timestamp,
+              name,
             }),
           })
           .then(donation => res.status(200).json(donation))
