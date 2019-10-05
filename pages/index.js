@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "@emotion/styled";
 // import "typeface-roboto";
-
+import User from "../components/icons/User"
 
 import api from "../api";
 
@@ -72,7 +72,7 @@ const Index = ({ projects }) => {
             {project.funded} de {project.goal}
           </Monto>
 
-          {/*componente progress*/}
+          {/*componente progress*/}<User />
 
         </Header>
 
