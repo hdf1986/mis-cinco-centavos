@@ -1,4 +1,4 @@
 .next
 node_modules
 credentials.json
-next.config.json
+next.config.js
