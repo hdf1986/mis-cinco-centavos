@@ -3,6 +3,7 @@ import Head from "next/head";
 import styled from "@emotion/styled";
 
 import api from "../api";
+import ProjectCard from "../components/ProjectCard";
 
 const Container = styled.div`
   padding: 12px;
@@ -12,7 +13,6 @@ const Project = ({ id, project: initialData }) => {
   const [project, setProject] = React.useState(initialData);
 
   React.useEffect(() => api.subscribe(id, setProject), [id]);
-
   return (
     <>
       <Head>
@@ -20,7 +20,9 @@ const Project = ({ id, project: initialData }) => {
         <meta content={project.title} name="og:title" />
         <meta content={project.description} name="og:description" />
       </Head>
-      <Container>Project</Container>
+      <Container>
+        <ProjectCard {...project} detail={true}/>
+      </Container>
     </>
   );
 };

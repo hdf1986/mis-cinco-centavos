@@ -128,13 +128,12 @@ const Description = styled.p`
   margin: 6px 0;
 `;
 
-const ProjectCard = ({ image, title, funded, goal, category, donations, description, id }) => {
+const ProjectCard = ({ image, title, funded, goal, category, donations, description, id, detail }) => {
   const [isFavourite, setFavourite] = React.useState(false);
 
   function handleDonate() {
     api.donate(id, 10).catch(console.log);
   }
-
   return (
     <Card>
       <Header src={image}>
@@ -143,7 +142,7 @@ const ProjectCard = ({ image, title, funded, goal, category, donations, descript
           <HeartIcon active={isFavourite} onClick={() => setFavourite(!isFavourite)}/>
         </Title>
         <Amount>
-          <div className="funded">${funded}</div>
+          <div className="funded">${donations.reduce((acc, cur) => acc + cur.amount, 0)}</div>
           <span> de </span>
           <div className="goal">${goal}</div>
         </Amount>
@@ -166,9 +165,10 @@ const ProjectCard = ({ image, title, funded, goal, category, donations, descript
           <Description>{description}</Description>
         </Content>
         <Footer>
-          <Link key={id} href={id}>
-            <Button backgroundColor="whitesmoke">Detalle</Button>
-          </Link>
+          {detail ? (<></>) : (<Link key={id} href={id}>
+                      <Button backgroundColor="whitesmoke">Detalle</Button>
+          </Link>)}
+          
           <Button color="white" onClick={handleDonate}>
             Donar
           </Button>
