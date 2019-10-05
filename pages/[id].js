@@ -11,10 +11,6 @@ const Container = styled.div`
 const Project = ({ id, project: initialData }) => {
   const [project, setProject] = React.useState(initialData);
 
-  function handleDonate() {
-    console.log("Donate");
-  }
-
   React.useEffect(() => api.subscribe(id, setProject), [id]);
 
   return (
@@ -24,20 +20,7 @@ const Project = ({ id, project: initialData }) => {
         <meta content={project.title} name="og:title" />
         <meta content={project.description} name="og:description" />
       </Head>
-      <Container>
-        {JSON.stringify(project)}
-        <button onClick={handleDonate}>Donar</button>
-        <hr />
-        <table>
-          <tbody>
-            {project.donations.map(({ timestamp, ammount }) => (
-              <tr key={timestamp}>
-                <td>Donación de ${ammount}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </Container>
+      <Container>Project</Container>
     </>
   );
 };

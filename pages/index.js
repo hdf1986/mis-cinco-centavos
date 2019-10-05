@@ -2,6 +2,7 @@ import Link from "next/link";
 import styled from "@emotion/styled";
 import api from "../api";
 // import "typeface-roboto";
+import User from "../components/icons/User"
 
 const Grilla = styled.div`
   display: grid;
@@ -92,7 +93,7 @@ const Index = ({ projects }) => {
             <span style={goalStyle}>&nbsp; de ${project.goal}</span>
           </Monto>
 
-          {/*componente progress*/}
+          {/*componente progress*/}<User />
 
         </Header>
 
