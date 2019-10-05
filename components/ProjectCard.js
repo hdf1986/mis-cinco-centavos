@@ -28,7 +28,7 @@ const Header = styled.div`
 
 const Title = styled.h1`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   font-size: 20px;
   color: white;
