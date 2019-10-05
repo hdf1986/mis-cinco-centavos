@@ -25,6 +25,7 @@ const Project = ({ id, project: initialData }) => {
         <meta content={project.description} name="og:description" />
       </Head>
       <Container>
+        <Tag />
         {JSON.stringify(project)}
         <button onClick={handleDonate}>Donar</button>
         <hr />
