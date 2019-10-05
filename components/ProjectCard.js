@@ -4,9 +4,11 @@ import Link from "next/link";
 
 import api from "../api";
 
+import Button from "./Button";
 import UserIcon from "./icons/User";
 import TagIcon from "./icons/Tag";
 import HeartIcon from "./icons/Heart";
+import ProjectForm from "./ProjectForm";
 
 const Card = styled.div`
   border-radius: 10px;
@@ -58,6 +60,17 @@ const Amount = styled.div`
   }
 `;
 
+const Progress = styled.div`
+  height: 25px;
+  background-color: whitesmoke;
+
+  .bar {
+    height: 100%;
+    width: ${({ amount }) => amount}%;
+    background: hsl(${({ amount }) => amount}, 70%, 50%);
+  }
+`;
+
 const Tags = styled.div`
   display: flex;
   align-items: center;
@@ -87,19 +100,6 @@ const Body = styled.div`
   flex: 1;
 `;
 
-const Progress = styled.div`
-  height: 25px;
-  background-color: whitesmoke;
-
-  .bar {
-    height: 100%;
-    width: ${({ amount }) => amount}%;
-    background: hsl(${({ amount }) => amount}, 70%, 50%);
-  }
-`;
-
-const Content = styled.div``;
-
 const Footer = styled.div`
   display: flex;
   align-items: center;
@@ -107,72 +107,61 @@ const Footer = styled.div`
   margin-top: 24px;
 `;
 
-const Button = styled.button`
-  padding: 12px;
-  color: white;
-  color: ${({ color = "black" }) => color};
-  background-color: ${({ backgroundColor = "orangered" }) => backgroundColor};
-  border: none;
-  border-radius: 4px;
-  font-size: 14px;
-  width: 100%;
-
-  :not(:first-child) {
-    margin-left: 12px;
-  }
-`;
-
 const Description = styled.p`
   margin: 6px 0;
 `;
 
 const ProjectCard = ({ image, title, funded, goal, category, donations, description, id }) => {
-  const [isFavourite, setFavourite] = React.useState(false);
+  const [isFavourite, toggleFavourite] = React.useState(false);
+  const [showModal, toggleModal] = React.useState(false);
 
-  function handleDonate() {
-    api.donate(id, 10).catch(console.log);
+  function handleDonate({ amount, name }) {
+    api.donate(id, amount, name).catch(console.log);
   }
 
   return (
-    <Card>
-      <Header src={image}>
-        <Title>
-          {title}
-          <HeartIcon active={isFavourite} onClick={() => setFavourite(!isFavourite)} />
-        </Title>
-        <Amount>
-          <div className="funded">${funded}</div>
-          <span> de </span>
-          <div className="goal">${goal}</div>
-        </Amount>
-      </Header>
-      <Progress amount={(funded / goal) * 100}>
-        <div className="bar" />
-      </Progress>
-      <Body>
-        <Content>
-          <Tags>
-            <Tag>
-              <TagIcon />
-              <span>{category}</span>
-            </Tag>
-            <Tag>
-              <UserIcon />
-              <span>{donations.length}</span>
-            </Tag>
-          </Tags>
-          <Description>{description}</Description>
-        </Content>
-        <Footer>
-          <Link key={id} href={id}>
-            <Button backgroundColor="whitesmoke">Detalle</Button>
-          </Link>
-          <Button color="white" onClick={handleDonate}>
-            Donar
-          </Button>
-        </Footer>
-      </Body>
-    </Card>
+    <>
+      <Card>
+        <Header src={image}>
+          <Title>
+            {title}
+            <HeartIcon active={isFavourite} onClick={() => toggleFavourite(!isFavourite)} />
+          </Title>
+          <Amount>
+            <div className="funded">${funded}</div>
+            <span> de </span>
+            <div className="goal">${goal}</div>
+          </Amount>
+        </Header>
+        <Progress amount={(funded / goal) * 100}>
+          <div className="bar" />
+        </Progress>
+        <Body>
+          <div>
+            <Tags>
+              <Tag>
+                <TagIcon />
+                <span>{category}</span>
+              </Tag>
+              <Tag>
+                <UserIcon />
+                <span>{donations.length}</span>
+              </Tag>
+            </Tags>
+            <Description>{description}</Description>
+          </div>
+          <Footer>
+            <Link key={id} href={id}>
+              <Button backgroundColor="whitesmoke">Detalle</Button>
+            </Link>
+            <Button color="white" onClick={() => toggleModal(true)}>
+              Donar
+            </Button>
+          </Footer>
+        </Body>
+      </Card>
+      {showModal && <ProjectForm title={title} onClose={() => toggleModal(false)} onSubmit={handleDonate} />}
+    </>
   );
 };
 

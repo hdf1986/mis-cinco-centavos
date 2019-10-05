@@ -11,16 +11,16 @@ function parse(doc) {
 }
 
 export default {
-  donate: (id, amount) => {
+  donate: (id, amount, name) => {
     return fetch("/api/preference", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id, amount }),
+      body: JSON.stringify({ id, amount, name }),
     })
       .then(res => (res.ok ? res.json() : Promise.reject("Hubo un error al preparar la donacion")))
-      .then(({ init_point }) => window.open(init_point))
+      .then(({ init_point }) => window.open(init_point));
   },
   get: project =>
     database
