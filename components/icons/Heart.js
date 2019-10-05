@@ -1,10 +1,10 @@
 const Heart = () => (
   <svg
     enablBackground="new -0.709 -11.555 141.732 141.732"
-    height="48px"
+    height="32px"
     version="1.1"
     viewBox="-0.709 -11.555 141.732 141.732"
-    width="48px"
+    width="32px"
     xmlSpace="preserve"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"

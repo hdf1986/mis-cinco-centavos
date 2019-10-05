@@ -1,10 +1,10 @@
 const Tag = () => (
   <svg
     enableBackground="new 0 0 500 500"
-    height="48px"
+    height="24px"
     version="1.1"
     viewBox="0 0 500 500"
-    width="48px"
+    width="24px"
     xmlSpace="preserve"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"

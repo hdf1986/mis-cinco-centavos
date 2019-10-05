@@ -2,7 +2,9 @@ import Link from "next/link";
 import styled from "@emotion/styled";
 import api from "../api";
 // import "typeface-roboto";
-import User from "../components/icons/User"
+import User from "../components/icons/User";
+import Tag from "../components/icons/Tag";
+import Heart from "../components/icons/Heart";
 
 const Grilla = styled.div`
   display: grid;
@@ -19,6 +21,7 @@ const Header = styled.div`
   margin-bottom: 12px;
   background-image: url(${({ src }) => src});
   background-size: cover;
+  min-height: 300px;
 `;
 
 
@@ -84,7 +87,7 @@ const Index = ({ projects }) => {
         <Header src={project.image}>
           <Titulo>
             <h1 style={h1Style}>{project.title}</h1>
-            #icono
+            <Heart/>
           </Titulo>
           <h2>{project.subtitle}</h2>
 
@@ -93,17 +96,19 @@ const Index = ({ projects }) => {
             <span style={goalStyle}>&nbsp; de ${project.goal}</span>
           </Monto>
 
-          {/*componente progress*/}<User />
+          {/*componente progress*/}
 
         </Header>
 
         <Body>
           <Tags>
             <span>
+              <Tag/>
               {project.category}
             </span>
             <span>
-            {project.donations.length}
+              <User/>
+              {project.donations.length}
             </span>
           </Tags>
 
@@ -113,7 +118,14 @@ const Index = ({ projects }) => {
             <button
               className="btn btn-default"
               style={buttonStyle}
-              onClick={handleClick}>Mas INFO +
+              onClick={handleClick}>Detalle
+            </button>
+          </Link>
+          <Link key={id} href={id}>
+            <button
+              className="btn btn-default"
+              style={buttonStyle}
+              onClick={handleClick}>Donar
             </button>
           </Link>
         </Body>
