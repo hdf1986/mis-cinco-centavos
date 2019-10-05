@@ -19,9 +19,13 @@ const Card = styled.div`
 
 const Header = styled.div`
   margin-bottom: 12px;
+  background-position: center center;
   background-image: url(${({ src }) => src});
   background-size: cover;
   min-height: 300px;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 
@@ -31,7 +35,7 @@ const Titulo = styled.div`
   justify-content:space-between;
   font-size: 10px;
   color:white;
-  background:grey;    
+  text-shadow: 1px 1px 2px rgba(150, 150, 150, 0.99);
   padding: 12px;
 `;
 
@@ -87,7 +91,9 @@ const Index = ({ projects }) => {
         <Header src={project.image}>
           <Titulo>
             <h1 style={h1Style}>{project.title}</h1>
-            <Heart/>
+            <iconContainer>
+              <Heart/>
+            </iconContainer>
           </Titulo>
           <h2>{project.subtitle}</h2>
 
