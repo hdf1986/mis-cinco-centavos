@@ -1,7 +1,7 @@
 const { database, firestore } = require("../../firebase/admin");
 
 export default (req, res) => {
-  const { project, ammount, id } = req.query;
+  const { project, amount, id } = req.query;
 
   if (id && project) {
     database
@@ -10,7 +10,7 @@ export default (req, res) => {
       .update({
         donations: firestore.FieldValue.arrayUnion({
           id,
-          ammount: Number(ammount),
+          amount: Number(amount),
           timestamp: +new Date(),
         }),
       })
