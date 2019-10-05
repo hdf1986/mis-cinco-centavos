@@ -21,7 +21,7 @@ const Project = ({ id, project: initialData }) => {
         <meta content={project.description} name="og:description" />
       </Head>
       <Container>
-        <ProjectCard {...project}/>
+        <ProjectCard {...project} detail={true}/>
       </Container>
     </>
   );

@@ -126,7 +126,7 @@ const Description = styled.p`
   margin: 6px 0;
 `;
 
-const ProjectCard = ({ image, title, funded, goal, category, donations, description, id }) => {
+const ProjectCard = ({ image, title, funded, goal, category, donations, description, id, detail }) => {
   const [isFavourite, setFavourite] = React.useState(false);
 
   function handleDonate() {
@@ -163,9 +163,10 @@ const ProjectCard = ({ image, title, funded, goal, category, donations, descript
           <Description>{description}</Description>
         </Content>
         <Footer>
-          <Link key={id} href={id}>
-            <Button backgroundColor="whitesmoke">Detalle</Button>
-          </Link>
+          {detail ? (<></>) : (<Link key={id} href={id}>
+                      <Button backgroundColor="whitesmoke">Detalle</Button>
+          </Link>)}
+          
           <Button color="white" onClick={handleDonate}>
             Donar
           </Button>

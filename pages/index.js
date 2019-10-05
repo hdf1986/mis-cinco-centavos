@@ -14,7 +14,7 @@ const Index = ({ projects }) => {
   return (
     <Grilla>
       {projects.map(project => (
-        <ProjectCard key={project.id} {...project} />
+        <ProjectCard key={project.id} {...project} detail={false}/>
       ))}
     </Grilla>
   );
